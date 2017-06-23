@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import MovieAdd from './components/MovieAdd'
+import UserProfile from './components/UserProfile'
 
 import App from './components/App';
 import Home from './components/Home'
@@ -9,5 +10,6 @@ export default (
     <Route component={ App } >
         <Route path='/' component={Home} />
             <Route path='/movie/Add' component={MovieAdd} />
+            <Route path='/user/profile/:userId' component={UserProfile} />
         </Route>
 );
