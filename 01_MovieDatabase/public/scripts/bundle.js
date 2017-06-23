@@ -2269,7 +2269,7 @@ var UserProfile = function (_React$Component) {
 
             var nodes = {};
 
-            nodes.roles = state.roles.map(function (role, index) {
+            nodes.roles = this.state.roles.map(function (role, index) {
 
                 return _react2.default.createElement(
                     'h4',

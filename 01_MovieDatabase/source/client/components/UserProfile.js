@@ -58,7 +58,7 @@ export default class UserProfile extends React.Component{
 
         let nodes = {}
 
-        nodes.roles = state.roles.map((role, index) => {
+        nodes.roles = this.state.roles.map((role, index) => {
 
             return (
                 <h4 key={index} className="lead">
