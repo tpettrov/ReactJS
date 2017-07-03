@@ -102,7 +102,7 @@ class AllBooksPage extends Component {
             .sort(this.sortFunction)
             .map(book => (
 
-                <Book key={book.id} book={book}/>
+                <Book key={book.id} homePageCall="true" book={book}/>
             ))
 
         return (
