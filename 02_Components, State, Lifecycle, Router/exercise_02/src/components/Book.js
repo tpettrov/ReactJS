@@ -4,7 +4,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import data from '../data'
-
+import Comment  from './Comment'
 
 class Book extends Component {
 
@@ -58,7 +58,13 @@ class Book extends Component {
         } else {
 
             let bookSingle = this.state.bookSingle
-            
+
+            // console.log(bookSingle.comments)
+            //
+            // let comments = bookSingle.comments.map( comment => {
+            //
+            //     <Comment key ={comment.id} comment = {comment}/>
+            // })
 
             return (
 
@@ -68,6 +74,7 @@ class Book extends Component {
                     Title:  <p>{bookSingle.title}</p>
                     Author: <p>{bookSingle.author}</p>
 
+                    {/*Comments: {comments}*/}
 
                 </div>
 
