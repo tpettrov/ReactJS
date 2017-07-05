@@ -4,6 +4,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import UserActions from '../../actions/UserActions'
+import UserStore from  '../../stores/UserStore'
 
 export default class NavabrUserMenu extends React.Component {
 
@@ -11,18 +13,29 @@ export default class NavabrUserMenu extends React.Component {
 
         super(props)
 
-        this.state = {
-
-            loggedInUserId: this.props.userData.loggedInUserId
-        }
+        this.state = UserStore.getState()
+        this.onChange = this.onChange.bind(this)
     }
 
-    componentWillReceiveProps(nextProps) {
+    onChange(state) {
 
-        this.setState({
-            loggedInUserId: nextProps.userData.loggedInUserId
-        })
+        this.setState(state)
     }
+
+    componentDidMount(){
+        UserStore.listen(this.onChange)
+    }
+
+    componentWillUnmount(){
+        UserStore.unlisten(this.onChange)
+    }
+
+    // componentWillReceiveProps(nextProps) {
+    //
+    //     this.setState({
+    //         loggedInUserId: nextProps.userData.loggedInUserId
+    //     })
+    // }
 
     render() {
 

@@ -20,11 +20,21 @@ export default class MovieCard extends  React.Component {
 
     render() {
 
+        let posterNode
+        if (this.props.moviePosterUrl){
+            posterNode = (
+                <img className="media-object" src={this.props.movie.moviePosterUrl} />
+            )
+        }
+
         return (
 
             <div className="animated fadeIn">
                 <div className="media movie">
                     <span className="position pull-left">{this.props.index + 1}</span>
+                    <div className="pull-left thumb-lg">
+                        {posterNode}
+                    </div>
                     <div className="media-body">
                         <h4 className="media-heading">
                             <Link to={`/movie/${this.props.movie._id}/${this.props.movie.name}`}>

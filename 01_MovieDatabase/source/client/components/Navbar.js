@@ -3,40 +3,41 @@
  */
 import React from 'react'
 import { Link } from 'react-router'
-import NavbarUserMenu from './sub-components/NavabrUserMenu'
+
+import NavbarActions from '../actions/NavbarActions'
+import NavbarStore from '../stores/NavbarStore'
+
+// import NavbarUserMenu from './sub-components/NavabrUserMenu'
 
 export default class Navbar extends  React.Component {
     constructor(props){
         super(props)
-        this.state = {
+        this.state = NavbarStore.getState()
+        this.onChange = this.onChange.bind(this)
 
-            ajaxAnimationClass: ''
-        }
+    }
 
+    onChange(state) {
+
+        this.setState(state)
     }
 
     componentDidMount(){
 
+        NavbarStore.listen(this.onChange)
+        $(document).ajaxStart(() => NavbarActions.updateAjaxAnimation('fadeIn'))
+        $(document).ajaxComplete(() => NavbarActions.updateAjaxAnimation('fadeOut'))
 
-        $(document).ajaxStart(() => {
+    }
 
-            this.setState({
-                ajaxAnimationClass: 'fadeIn'
-            })
-        })
+    componentWillUnmount(){
 
-        $(document).ajaxComplete(()=>{
-
-            this.setState({
-                ajaxAnimationClass: 'fadeOut'
-            })
-        })
-
+        NavbarStore.unlisten(this.onChange)
     }
 
     render(){
 
-        let navbarUserMenu = <NavbarUserMenu userData={this.props.userData}/>
+        // let navbarUserMenu = <NavbarUserMenu userData={this.props.userData}/>
 
         return (
 
@@ -77,7 +78,7 @@ export default class Navbar extends  React.Component {
                             <Link to="/movie/add"> Add Movie</Link>
                         </li>
                     </ul>
-                    {navbarUserMenu}
+                    {/*{navbarUserMenu}*/}
                 </div>
             </nav>
 

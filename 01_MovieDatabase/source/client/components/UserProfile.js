@@ -3,6 +3,7 @@
  */
 import React from 'react'
 import { Link } from 'react-router'
+import UserStore from '../stores/UserStore'
 
 export default class UserProfile extends React.Component{
 
@@ -10,47 +11,25 @@ export default class UserProfile extends React.Component{
 
         super(props)
 
-        this.state = {
+        this.state = UserStore.getState()
+        this.onChange = this.onChange.bind(this)
 
-            username: '',
-            roles: [],
-            information: '',
-            votes: '',
-            reviews: '',
-            message: ''
-        }
+    }
 
+    onChange(state){
+
+        this.setState(state)
     }
 
     componentDidMount(){
 
+        UserStore.listen(this.onChange)
 
-        let request = {
+    }
 
-            url: `/api/user/${this.props.params.userId}`,
-            method: 'get'
+    componentWillUnmount(){
 
-        }
-
-        $.ajax(request)
-            .done(user => {
-
-                this.setState({
-
-                    username: user.username,
-                    roles: user.roles,
-                    information: user.information,
-                    votes: user.votes,
-                    reviews: user.reviews
-                })
-            })
-            .fail (err => {
-
-                this.setState({
-                    message: err.responseJSON.message
-                })
-
-            })
+        UserStore.unlisten(this.onChange)
 
     }
 
