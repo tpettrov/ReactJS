@@ -1,0 +1,19 @@
+import React, {Component} from 'react'
+
+class TextInput extends Component {
+  render () {
+    return (
+      <div className='myClass'>
+        <label htmlFor={this.props.name}>
+          {this.props.label}
+        </label>
+        <input type='text' className='common-input-class'
+          placeholder={this.props.placeholder} id={this.props.id}
+          name={this.props.name} value={this.props.value} />
+        <span className='error'>{this.props.error}</span>
+      </div>
+    )
+  }
+}
+
+export default TextInput

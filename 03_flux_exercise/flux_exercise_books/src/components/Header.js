@@ -22,6 +22,9 @@ class Header extends Component {
                     <td>
                         <Link to={'/authors/all'}>All authors</Link>
                     </td>
+                    <td>
+                        <Link to={'/books/create'}>Create Book</Link>
+                    </td>
                 </tr>
                 </thead>
 
