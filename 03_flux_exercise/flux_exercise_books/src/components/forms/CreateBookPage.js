@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import TextInput from './textInput'
+import AllBooksActions from '../../actions/AllBooksActions'
 
 class CreateBookPage extends Component {
 
@@ -18,7 +19,7 @@ class CreateBookPage extends Component {
 
         event.preventDefault()
         //externalApi.save(this.state.data)
-        console.log(this.state)
+       AllBooksActions.addBook(this.state)
         //this.props.history.push('/redirect/path')
     }
 

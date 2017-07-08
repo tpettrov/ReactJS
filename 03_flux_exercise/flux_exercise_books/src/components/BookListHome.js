@@ -4,7 +4,7 @@
 import React, {Component} from 'react'
 
 import Book from './Book'
-import BookStore from '../stores/BooksStore'
+import BooksStore from '../stores/BooksStore'
 
 class BookListHome extends Component {
 
@@ -31,7 +31,7 @@ class BookListHome extends Component {
 
     getSixBooks() {
 
-        BookStore.getAllBooks().then((receivedBooks) => {
+        BooksStore.getAllBooks().then((receivedBooks) => {
 
             let sixBooks = receivedBooks.slice(0, 6).sort((a,b) => {
 

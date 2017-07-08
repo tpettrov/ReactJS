@@ -15,8 +15,15 @@ let allBookActions = {
             type: 'PREVIOUS_PAGE',
         })
 
-    }
+    },
 
+     addBook: (book) => {
+        dispatcher.dispatch({
+            type: 'ADD_BOOK',
+            data: book
+        })
+
+}
 }
 
 export default allBookActions

@@ -4,7 +4,7 @@
 import React, {Component} from 'react'
 
 import Book from './Book'
-import BookStore from '../stores/BooksStore'
+import BooksStore from '../stores/BooksStore'
 import AllBooksActions from '../actions/AllBooksActions'
 
 class AllBooks extends Component {
@@ -18,7 +18,7 @@ class AllBooks extends Component {
 
         }
 
-        BookStore.on('change', () => {
+        BooksStore.on('change', () => {
             this.getBooks()
         })
 
@@ -35,7 +35,7 @@ class AllBooks extends Component {
 
     getBooks() {
 
-        BookStore.getBooks().then((receivedBooks) => {
+        BooksStore.getBooks().then((receivedBooks) => {
 
             this.setState({books: receivedBooks})
 

@@ -47,6 +47,17 @@ class BooksStore extends EventEmitter {
 
     }
 
+    addBook(book){
+
+        book.id = this.books.books.length + 1
+        book.date =  new Date(7,8,17)
+
+        this.books.addBook(book).then((res) => {
+            console.log(res)
+        })
+
+    }
+
 
     showNextPage () {
 
@@ -75,6 +86,11 @@ class BooksStore extends EventEmitter {
                 this.showPreviousPage()
                 break
             }
+
+            case 'ADD_BOOK': {
+                this.addBook(action.data)
+                break
+            }
             default: break
         }
     }
@@ -82,9 +98,9 @@ class BooksStore extends EventEmitter {
 
 }
 
-let bookStore = new BooksStore()
+let booksStore = new BooksStore()
 
-dispatcher.register(bookStore.handleAction.bind(bookStore))
+dispatcher.register(booksStore.handleAction.bind(booksStore))
 
 
-export default bookStore
+export default booksStore
