@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 const Book = (props) => (
     <li>
         {props.title} - {props.author} -{props.date.toLocaleDateString()} - <Link to={'/books/' + props.id}>Details</Link>
+        -<Link to={'/books/edit/' + props.id}>Edit Book</Link>
     </li>
 )
 
