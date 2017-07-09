@@ -7,9 +7,9 @@ class TextInput extends Component {
         <label htmlFor={this.props.name}>
           {this.props.label}
         </label>
-        <input onInput={this.props.whenChanged} type='text' className='common-input-class'
+        <input onChange={this.props.whenChanged} type='text' className='common-input-class'
           placeholder={this.props.placeholder} id={this.props.id}
-          name={this.props.name} value={this.props.value} />
+          name={this.props.name} defaultValue={this.props.value} value={this.props.value} />
         <span className='error'>{this.props.error}</span>
       </div>
     )

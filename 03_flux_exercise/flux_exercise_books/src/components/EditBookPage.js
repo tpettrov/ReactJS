@@ -1,17 +1,36 @@
 import React, {Component} from 'react'
 import AllBooksActions from '../actions/AllBooksActions'
 import BookForm from '../components/forms/BookForm'
+import BooksStore from '../stores/BooksStore' 
 
-class CreateBookPage extends Component {
+class EditBookPage extends Component {
 
     constructor(props){
 
         super(props)
 
         this.state = ({
-        
+        bookId: this.props.match.params.id,
+        book: {}
         })
     
+
+    }
+
+    componentDidMount(){
+
+        this.getBookById()
+
+    }
+
+    getBookById(){
+
+        BooksStore.getBookById(this.state.bookId).then((bookFound)=>{
+
+            this.setState({book: bookFound})
+            
+
+        })
 
     }
     
@@ -40,12 +59,12 @@ class CreateBookPage extends Component {
         return (
             
             <div>
-                <h1> Enter the new book </h1>
+                <h1> Edit the book </h1>
            
                 <BookForm 
                 onSave = {this.saveForm.bind(this)}
                 whenChanged = {this.handleInputChange.bind(this)}
-                book = '' />
+                book = {this.state.book} />
                 
             </div>
           
@@ -57,4 +76,4 @@ class CreateBookPage extends Component {
 
 }
 
-export default CreateBookPage
+export default EditBookPage

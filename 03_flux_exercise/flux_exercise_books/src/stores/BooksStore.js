@@ -58,6 +58,12 @@ class BooksStore extends EventEmitter {
 
     }
 
+    getBookById(id){
+
+        return this.books.getBook(id)
+
+    }
+
 
     showNextPage () {
 

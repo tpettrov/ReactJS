@@ -32,6 +32,21 @@ const data = {
 
     },
 
+    getBook: (id)=>{
+
+             return new Promise((resolve, reject) =>{
+            
+            let book = data.books.find( book =>
+
+                 book.id.toString() === id.toString()
+            )
+            resolve(book)
+
+        })
+
+
+    }
+
 }
 
 export default data
