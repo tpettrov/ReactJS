@@ -8,6 +8,7 @@ import AllBooks from './components/AllBooks'
 // import Book from './components/Book'
 import CreateBookPage from './components/CreateBookPage'
 import EditBookPage from './components/EditBookPage'
+import RegistrationPage from './components/RegistrationPage'
 
 const Routes = () => (
 
@@ -16,6 +17,7 @@ const Routes = () => (
         <Route exact path="/books/all" component={AllBooks} />
         <Route exact path="/books/create"  component={CreateBookPage}  />
         <Route exact path="/books/edit/:id"  component={EditBookPage}  />
+        <Route exact path="/user/register"  component={RegistrationPage}  />
     </Switch>
 
 )

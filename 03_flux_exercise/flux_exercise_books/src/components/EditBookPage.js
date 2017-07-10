@@ -11,7 +11,10 @@ class EditBookPage extends Component {
 
         this.state = ({
         bookId: this.props.match.params.id,
-        book: {}
+        book: {
+            title: '',
+            author: ''
+        }
         })
     
 
@@ -46,7 +49,11 @@ class EditBookPage extends Component {
         const target = event.target
         const field = target.name
         const value = target.value
-        this.setState({[field]: value})
+
+        const book = this.state.book
+        book[field] = value
+
+        this.setState({book})
     }
 
 

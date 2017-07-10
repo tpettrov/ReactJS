@@ -11,6 +11,10 @@ const data = {
                 {id: 6, title: 'MongoDb', author: 'John', date: new Date(97,5,24), comments: [{id: 1, content: 'First comment'}]},
                 {id: 7, title: 'SedmaBook', author: 'Oliver', date: new Date(2017,5,24), comments: [{id: 1, content: 'First comment'}]} ],
 
+                users: [
+
+                ],
+
     getBooks: () => {
 
         return new Promise((resolve, reject) =>{
@@ -45,6 +49,17 @@ const data = {
         })
 
 
+    },
+
+    registerUser: (user) =>{
+
+             return new Promise((resolve, reject) =>{
+            
+            this.users.push(user)
+            console.log(this.users)
+            resolve()
+
+        })
     }
 
 }
