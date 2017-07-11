@@ -3,6 +3,8 @@
  */
 import React, {Component} from 'react'
 import RegisterForm from './RegisterForm'
+import userActions from '../../actions/UserActions'
+import userStore from '../../stores/UserStore'
 
 class RegisterPage extends Component {
 
@@ -12,23 +14,79 @@ class RegisterPage extends Component {
         this.state = {
 
             user: {
-
+                name: 'test',
                 email: 'test@test.bg',
-                password: '123',
-                name: 'test'
+                password: ''
+
 
             },
 
             error: ''
 
-
         }
+
+        this.handleUserRegistration = this.handleUserRegistration.bind(this)
+
+        userStore.on(
+
+            userStore.eventTypes.USER_REGISTERED,
+            this.handleUserRegistration
+        )
+    }
+
+    componentWillUnmount(){
+
+        userStore.removeListener(
+            userStore.eventTypes.USER_REGISTERED,
+            this.handleUserRegistration)
+
 
     }
 
-    handleUserRegistration(event) {
+
+    handleUserRegistration(data) {
+
+
+        console.log(data)
+
+
+    }
+
+    handleUserForm(event) {
 
         event.preventDefault()
+
+        if (!this.validateUser()) {
+
+            return
+        }
+
+        userActions.register(this.state.user)
+
+    }
+
+    validateUser(){
+
+
+        const user = this.state.user
+        let formIsValid = true
+        let error = ''
+
+        if (user.password.length <= 3 ) {
+
+            error = 'Password should be more than 4 symbols '
+
+            formIsValid = false
+
+        }
+
+        if (error) {
+
+            this.setState({ error: error })
+
+        }
+
+        return formIsValid
 
     }
 
@@ -58,7 +116,7 @@ class RegisterPage extends Component {
                     user={this.state.user}
                     onChange={this.handleUserChange.bind(this)}
                     error={this.state.error}
-                    onSave={this.handleUserRegistration.bind(this)}
+                    onSave={this.handleUserForm.bind(this)}
                 />
             </div>
         )
