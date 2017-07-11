@@ -28,13 +28,12 @@ class RegisterPage extends Component {
         this.handleUserRegistration = this.handleUserRegistration.bind(this)
 
         userStore.on(
-
             userStore.eventTypes.USER_REGISTERED,
             this.handleUserRegistration
         )
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
 
         userStore.removeListener(
             userStore.eventTypes.USER_REGISTERED,
@@ -65,14 +64,14 @@ class RegisterPage extends Component {
 
     }
 
-    validateUser(){
+    validateUser() {
 
 
         const user = this.state.user
         let formIsValid = true
         let error = ''
 
-        if (user.password.length <= 3 ) {
+        if (user.password.length <= 3) {
 
             error = 'Password should be more than 4 symbols '
 
@@ -82,7 +81,7 @@ class RegisterPage extends Component {
 
         if (error) {
 
-            this.setState({ error: error })
+            this.setState({error: error})
 
         }
 
