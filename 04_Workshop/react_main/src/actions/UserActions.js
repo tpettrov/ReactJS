@@ -9,7 +9,8 @@ const userActions = {
 
     types: {
 
-        REGISTER_USER: 'REGISTER_USER'
+        REGISTER_USER: 'REGISTER_USER',
+        LOGIN_USER: 'LOGIN_USER'
 
     },
 
@@ -22,9 +23,18 @@ const userActions = {
 
         })
 
+    },
+
+    login (user) {
+
+        dispatcher.dispatch({
+
+            type: this.types.LOGIN_USER,
+            user
+
+        })
+
     }
-
-
 }
 
 export default userActions
