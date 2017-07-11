@@ -1,12 +1,12 @@
 /**
  * Created by apetrov on 7/11/2017.
  */
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 
-class ListPagePets extends  Component {
+class ListPagePets extends Component {
 
-    render(){
+    render() {
 
 
         return (

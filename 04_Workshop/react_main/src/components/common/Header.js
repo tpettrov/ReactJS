@@ -19,10 +19,10 @@ class Header extends  Component {
                         <Link to={'/'}>Home</Link>
                     </td>
                     <td>
-                        <Link to={'/user/register'}>Register</Link>
+                        <Link to={'/users/register'}>Register</Link>
                     </td>
                     <td>
-                        <Link to={'/user/login'}>Login</Link>
+                        <Link to={'/users/login'}>Login</Link>
                     </td>
 
                 </tr>
