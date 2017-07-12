@@ -34,6 +34,14 @@ class ListPagePets extends Component {
 
     }
 
+    componentWillUnmount(){
+
+        petStore.removeListener(
+            petStore.eventTypes.PETS_LOADED,
+            this.handleLoadedPets
+        )
+    }
+
     getPets(){
 
         petActions.get()
