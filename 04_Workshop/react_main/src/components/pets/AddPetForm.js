@@ -30,12 +30,12 @@ const AddPetForm = (props) => {
                 onChange = {props.onChange}
             />
 
-            <select name="type">
-                <option value="cat">Cat</option>
-                <option value="dog">Dog</option>
-                <option value="other">Other</option>
+            <select name="type" onChange={props.onChange}>
+                <option value="Cat">Cat</option>
+                <option value="Dog">Dog</option>
+                <option value="Other">Other</option>
             </select>
-            <input type="submit" value="Login" onClick={props.onSave}/>
+            <input type="submit" value="Create Pet" onClick={props.onSave}/>
         </form>
 
 
