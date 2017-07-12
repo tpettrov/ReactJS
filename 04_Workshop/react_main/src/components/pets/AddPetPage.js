@@ -6,6 +6,7 @@ import AddPetForm from '../pets/AddPetForm'
 import HandleHelper from '../common/HandleHelper'
 import petActions from '../../actions/PetActions'
 import petStore from '../../stores/PetStore'
+import toastr from 'toastr'
 
 class AddPetPage extends Component {
 
@@ -53,7 +54,18 @@ class AddPetPage extends Component {
 
     petCreationHandler(data) {
 
-        console.log(data)
+        if (!data.success) {
+
+            this.setState({
+                error: data.message
+            })
+
+        } else {
+
+            toastr.success('Pet added.')
+            this.props.history.push('/')
+
+        }
     }
 
     componentWillUnmount(){
@@ -78,6 +90,7 @@ class AddPetPage extends Component {
                     pet={this.state.pet}
                     onChange = {this.petChangeHandler.bind(this)}
                     onSave = {this.petFormSaveHandler.bind(this)}
+                    error = {this.state.error}
                 />
             </div>
 

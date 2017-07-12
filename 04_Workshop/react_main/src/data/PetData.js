@@ -11,6 +11,11 @@ class PetData {
         return data.post(`${baseUrl}/create`, pet, true)
     }
 
+    static get() {
+
+        return data.get(`${baseUrl}/all`, true)
+    }
+
 
 
 }

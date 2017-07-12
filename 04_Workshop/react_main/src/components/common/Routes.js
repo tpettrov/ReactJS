@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
-import ListPagePets from '../pets/ListPagePets'
+import ListPetsPage from '../pets/ListPetsPage'
 import RegisterPage from '../users/RegisterPage'
 import LoginPage from '../users/LoginPage'
 import PrivateRoute from './PrivateRoute'
@@ -13,7 +13,7 @@ import AddPetPage from '../pets/AddPetPage'
 const Routes = () => (
 
     <Switch>
-        <Route exact path="/" component={ListPagePets}/>
+        <Route exact path="/" component={ListPetsPage}/>
         <Route exact path="/users/register" component={RegisterPage}/>
         <Route exact path="/users/login" component={LoginPage}/>
         <PrivateRoute path="/users/logout" component={LogoutPage} />

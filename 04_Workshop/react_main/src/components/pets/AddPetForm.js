@@ -8,7 +8,7 @@ const AddPetForm = (props) => {
 
     return (
         <form>
-
+            <div>{props.error}</div>
             <Input
                 name='name'
                 placeholder='Name'

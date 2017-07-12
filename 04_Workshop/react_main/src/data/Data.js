@@ -8,7 +8,6 @@ const baseUrl = 'http://localhost:5000/'
 
 const getOptions = () => ({
 
-    method: 'POST',
     mode: 'cors',
     headers: {
 
@@ -27,6 +26,22 @@ class Data {
         let options = getOptions()
         options.method = 'POST'
         options.body = JSON.stringify(data)
+
+        if (authenticated) {
+
+            options.headers.Authorization = `bearer ${Auth.getToken()}`
+
+        }
+
+        return window.fetch(`${baseUrl}${url}`, options).then(handleJsonResponse)
+
+    }
+
+    static get (url, authenticated) {
+
+        let options = getOptions()
+        options.method = 'GET'
+
 
         if (authenticated) {
 

@@ -10,6 +10,7 @@ const petActions = {
     types: {
 
         CREATE_PET: 'CREATE_PET',
+        GET_PETS: 'GET_PETS'
 
 
     },
@@ -23,7 +24,18 @@ const petActions = {
 
         })
 
+    },
+    get () {
+
+        dispatcher.dispatch({
+
+            type: this.types.GET_PETS,
+
+
+        })
+
     }
+
 }
 
 export default petActions

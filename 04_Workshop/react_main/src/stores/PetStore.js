@@ -16,6 +16,12 @@ class PetStore extends EventEmitter {
 
     }
 
+    get() {
+
+        petData.get().then(data => this.emit(this.eventTypes.PETS_LOADED, data))
+
+    }
+
 
 
 
@@ -29,6 +35,11 @@ class PetStore extends EventEmitter {
                 break
             }
 
+            case petActions.types.GET_PETS: {
+
+                this.get()
+                break
+            }
 
             default:
                 break
@@ -47,7 +58,8 @@ class PetStore extends EventEmitter {
 let petStore = new PetStore()
 petStore.eventTypes = {
 
-    PET_CREATED: 'pet_created'
+    PET_CREATED: 'pet_created',
+    PETS_LOADED: 'pets_loaded'
 
 }
 
