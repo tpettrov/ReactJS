@@ -8,7 +8,7 @@ const LoginForm = (props) => {
 
     return (
         <form>
-
+            <div>{props.error}</div>
             <Input
             name='email'
             placeholder='E-mail'

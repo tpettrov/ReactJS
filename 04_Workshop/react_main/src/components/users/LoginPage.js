@@ -7,6 +7,7 @@ import userActions from '../../actions/UserActions'
 import userStore from '../../stores/UserStore'
 import Auth from './Auth'
 import toastr from 'toastr'
+import HandleHelper from '../common/HandleHelper'
 
 class LoginPage extends Component {
 
@@ -46,12 +47,7 @@ class LoginPage extends Component {
     // can be GENERIC function if left time
     handleUserChange(event) {
 
-        const target = event.target
-        const field = target.name
-        const value = target.value
-        const user = this.state.user
-        user[field] = value
-        this.setState({user})
+        HandleHelper.handle.bind(this)(event, 'user')
 
     }
 

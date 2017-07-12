@@ -8,6 +8,7 @@ import RegisterPage from '../users/RegisterPage'
 import LoginPage from '../users/LoginPage'
 import PrivateRoute from './PrivateRoute'
 import LogoutPage from '../users/LogoutPage'
+import AddPetPage from '../pets/AddPetPage'
 
 const Routes = () => (
 
@@ -16,7 +17,7 @@ const Routes = () => (
         <Route exact path="/users/register" component={RegisterPage}/>
         <Route exact path="/users/login" component={LoginPage}/>
         <PrivateRoute path="/users/logout" component={LogoutPage} />
-
+        <PrivateRoute path="/pets/create" component={AddPetPage} />
     </Switch>
 
 )
