@@ -33,6 +33,15 @@ class LoginPage extends Component {
 
     }
 
+    componentWillUnmount() {
+
+        userStore.removeListener(
+            userStore.eventTypes.USER_LOGGED,
+            this.handleUserLogged)
+
+
+    }
+
 
     // can be GENERIC function if left time
     handleUserChange(event) {
