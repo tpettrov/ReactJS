@@ -66,6 +66,13 @@ class ShowDetailsPage extends Component {
 
     }
 
+    handleAddCommentForm(event){
+
+        event.preventDefault()
+        console.log('tuk')
+
+    }
+
 
     render(){
 
@@ -81,7 +88,7 @@ class ShowDetailsPage extends Component {
                 {pet.type}
                 {pet.name}
 
-                <AddCommForm />
+                <AddCommForm onClick={this.handleAddCommentForm.bind(this)} />
             </div>
         )
 

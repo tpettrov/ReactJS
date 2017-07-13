@@ -13,7 +13,7 @@ class AddCommForm extends Component {
             <div>
                 <form>
                     <Input/>
-                    <input type="submit" value="Add Comment"/>
+                    <input type="submit" value="Add Comment" onClick={this.props.onClick}/>
                 </form>
             </div>
 
