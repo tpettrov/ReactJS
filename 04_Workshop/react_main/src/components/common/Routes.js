@@ -9,6 +9,7 @@ import LoginPage from '../users/LoginPage'
 import PrivateRoute from './PrivateRoute'
 import LogoutPage from '../users/LogoutPage'
 import AddPetPage from '../pets/AddPetPage'
+import ShowDetailsPage from '../pets/ShowDetailsPage'
 
 const Routes = () => (
 
@@ -18,6 +19,7 @@ const Routes = () => (
         <Route exact path="/users/login" component={LoginPage}/>
         <PrivateRoute path="/users/logout" component={LogoutPage} />
         <PrivateRoute path="/pets/create" component={AddPetPage} />
+            <PrivateRoute path="/pets/details/:id" component={ShowDetailsPage} />
     </Switch>
 
 )

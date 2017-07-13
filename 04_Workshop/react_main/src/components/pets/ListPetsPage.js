@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 import petActions from '../../actions/PetActions'
 import petStore from '../../stores/PetStore'
 import queryString from 'query-string'
+import { Link } from 'react-router-dom'
 
 
 class ListPagePets extends Component {
@@ -100,7 +101,7 @@ class ListPagePets extends Component {
 
         let pets = this.state.pets.map(pet => {
 
-            return <li key={pet.id}>{pet.name}</li>
+            return <li key={pet.id}>{pet.name}{<Link to={`/pets/details/${pet.id}`}>Details</Link>}</li>
         })
 
         let msg = ''

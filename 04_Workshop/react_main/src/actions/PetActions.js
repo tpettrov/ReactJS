@@ -10,7 +10,8 @@ const petActions = {
     types: {
 
         CREATE_PET: 'CREATE_PET',
-        GET_PETS: 'GET_PETS'
+        GET_PETS: 'GET_PETS',
+        GET_PET_BY_ID: 'GET_PET_BY_ID'
 
 
     },
@@ -34,7 +35,20 @@ const petActions = {
 
         })
 
+    },
+
+
+    getPetbyId (id) {
+
+        dispatcher.dispatch({
+
+            type: this.types.GET_PET_BY_ID,
+            id
+
+        })
+
     }
+
 
 }
 

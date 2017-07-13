@@ -22,6 +22,12 @@ class PetStore extends EventEmitter {
 
     }
 
+    getById(id) {
+
+        petData.getById(id).then(data => this.emit(this.eventTypes.PET_CREATED, data))
+
+    }
+
 
 
 
@@ -38,6 +44,12 @@ class PetStore extends EventEmitter {
             case petActions.types.GET_PETS: {
 
                 this.get(action.page)
+                break
+            }
+
+            case petActions.types.GET_PET_BY_ID: {
+
+                this.getById(action.id)
                 break
             }
 
@@ -59,7 +71,8 @@ let petStore = new PetStore()
 petStore.eventTypes = {
 
     PET_CREATED: 'pet_created',
-    PETS_LOADED: 'pets_loaded'
+    PETS_LOADED: 'pets_loaded',
+    PET_LOADED: 'pet_loaded'
 
 }
 

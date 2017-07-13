@@ -16,6 +16,11 @@ class PetData {
         return data.get(`${baseUrl}/all?page=${page}`, true)
     }
 
+    static getById(id) {
+
+        return data.get(`${baseUrl}/details/${id}`, true)
+    }
+
 
 
 }
