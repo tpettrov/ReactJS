@@ -4,6 +4,8 @@
 import React, {Component} from 'react'
 import petActions from '../../actions/PetActions'
 import petStore from '../../stores/PetStore'
+import queryString from 'query-string'
+
 
 class ListPagePets extends Component {
 
@@ -11,11 +13,14 @@ class ListPagePets extends Component {
 
         super(props)
 
+        const query = queryString.parse(this.props.location.search)
+        const page = parseInt(query.page, 10) || 1
 
         this.state = {
 
-            page: 1,
-            pets: []
+            page: page,
+            pets: [],
+
 
         }
 
@@ -28,9 +33,9 @@ class ListPagePets extends Component {
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
 
-        this.getPets()
+        this.getPets(this.state.page)
 
     }
 
@@ -42,23 +47,87 @@ class ListPagePets extends Component {
         )
     }
 
-    getPets(){
+    getPets(page){
 
-        petActions.get()
+        petActions.get(page)
     }
 
     handleLoadedPets(data){
 
-        console.log(data)
+        this.setState({pets: data})
+
+    }
+
+    goPrevPage () {
+
+        let page = this.state.page
+        if(page !== 1) {
+
+            page--
+        }
+
+
+        this.setState({page})
+
+        this.props.history.push(`/?page=${page}`)
+        petActions.get(page)
+
+
+    }
+
+
+    goNextPage () {
+
+        let page = this.state.page
+
+        if(this.state.pets.length === 0) {
+
+            return
+        }
+
+        page++
+
+        this.setState({page})
+        petActions.get(page)
+        this.props.history.push(`/?page=${page}`)
+
     }
 
 
     render() {
 
 
+
+        let pets = this.state.pets.map(pet => {
+
+            return <li key={pet.id}>{pet.name}</li>
+        })
+
+        let msg = ''
+
+        if(this.state.pets.length === 0) {
+
+             msg = 'Sorry no more pets'
+        }
+
+
         return (
 
-            <h1> List Pets Page</h1>
+            <div>
+                <h1> List Pets Page</h1>
+                <ul>
+                    {pets}
+                    {msg}
+                </ul>
+
+                <div>
+                    <button onClick={this.goPrevPage.bind(this)}>Prev</button>
+                    <button onClick={this.goNextPage.bind(this)}>Next</button>
+                </div>
+
+
+            </div>
+
 
 
         )

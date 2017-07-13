@@ -16,9 +16,9 @@ class PetStore extends EventEmitter {
 
     }
 
-    get() {
+    get(page) {
 
-        petData.get().then(data => this.emit(this.eventTypes.PETS_LOADED, data))
+        petData.get(page).then(data => this.emit(this.eventTypes.PETS_LOADED, data))
 
     }
 
@@ -37,7 +37,7 @@ class PetStore extends EventEmitter {
 
             case petActions.types.GET_PETS: {
 
-                this.get()
+                this.get(action.page)
                 break
             }
 

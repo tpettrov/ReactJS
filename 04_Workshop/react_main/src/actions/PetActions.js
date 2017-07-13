@@ -25,12 +25,12 @@ const petActions = {
         })
 
     },
-    get () {
+    get (page) {
 
         dispatcher.dispatch({
 
             type: this.types.GET_PETS,
-
+            page
 
         })
 

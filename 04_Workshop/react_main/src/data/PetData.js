@@ -11,9 +11,9 @@ class PetData {
         return data.post(`${baseUrl}/create`, pet, true)
     }
 
-    static get() {
-
-        return data.get(`${baseUrl}/all`, true)
+    static get(page) {
+        page = page || 1
+        return data.get(`${baseUrl}/all?page=${page}`, true)
     }
 
 
