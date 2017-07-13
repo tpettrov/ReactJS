@@ -28,6 +28,12 @@ class PetStore extends EventEmitter {
 
     }
 
+    addPetComment(comment, id) {
+
+        petData.addComment(comment, id).then(data => this.emit(this.eventTypes.COMMENT_ADDED, data))
+
+    }
+
 
 
 
@@ -53,6 +59,13 @@ class PetStore extends EventEmitter {
                 break
             }
 
+            case petActions.types.ADD_COMMENT: {
+
+                this.addPetComment(action.comment, action.id)
+                break
+            }
+
+
             default:
                 break
 
@@ -72,7 +85,8 @@ petStore.eventTypes = {
 
     PET_CREATED: 'pet_created',
     PETS_LOADED: 'pets_loaded',
-    PET_LOADED: 'pet_loaded'
+    PET_LOADED: 'pet_loaded',
+    COMMENT_ADDED: 'comment_added'
 
 }
 

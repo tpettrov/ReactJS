@@ -6,6 +6,7 @@ import petActions from '../../actions/PetActions'
 import petStore from '../../stores/PetStore'
 import AddCommForm from '../../components/comments/AddCommForm'
 import toastr from 'toastr'
+import HandleHelper from '../common/HandleHelper'
 
 class ShowDetailsPage extends Component {
 
@@ -16,14 +17,22 @@ class ShowDetailsPage extends Component {
         this.state = {
 
             pet: {},
-            petId: this.props.match.params.id
+            petId: this.props.match.params.id,
+            commentToAdd: {
+
+                message: ''
+            }
 
         }
 
         this.handleLoadedPet = this.handleLoadedPet.bind(this)
+        this.handleCommentAdded = this.handleCommentAdded.bind(this)
 
         petStore.on(petStore.eventTypes.PET_CREATED,
         this.handleLoadedPet)
+
+        petStore.on(petStore.eventTypes.COMMENT_ADDED,
+            this.handleCommentAdded)
 
     }
 
@@ -38,6 +47,11 @@ class ShowDetailsPage extends Component {
         petStore.removeListener(
             petStore.eventTypes.PET_CREATED,
             this.handleLoadedPet
+        )
+
+        petStore.removeListener(
+            petStore.eventTypes.COMMENT_ADDED,
+            this.handleCommentAdded()
         )
 
     }
@@ -69,8 +83,19 @@ class ShowDetailsPage extends Component {
     handleAddCommentForm(event){
 
         event.preventDefault()
-        console.log('tuk')
+        petActions.addComment(this.state.commentToAdd, this.state.petId)
 
+
+    }
+
+    handleCommentChange(event){
+
+        HandleHelper.handle.bind(this)(event, 'commentToAdd')
+    }
+
+    handleCommentAdded(data) {
+
+        console.log(data)
     }
 
 
@@ -88,7 +113,7 @@ class ShowDetailsPage extends Component {
                 {pet.type}
                 {pet.name}
 
-                <AddCommForm onClick={this.handleAddCommentForm.bind(this)} />
+                <AddCommForm onClick={this.handleAddCommentForm.bind(this)} onChange={this.handleCommentChange.bind(this)} />
             </div>
         )
 

@@ -21,6 +21,10 @@ class PetData {
         return data.get(`${baseUrl}/details/${id}`, true)
     }
 
+    static addComment(comment, id) {
+debugger
+        return data.post(`${baseUrl}/details/${id}/comments/create`,comment, true)
+    }
 
 
 }
