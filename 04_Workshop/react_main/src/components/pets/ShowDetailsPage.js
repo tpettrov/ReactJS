@@ -95,7 +95,15 @@ class ShowDetailsPage extends Component {
 
     handleCommentAdded(data) {
 
-        console.log(data)
+        if (!data.success) {
+
+            toastr.error(!data.message)
+
+        } else {
+
+
+
+        }
     }
 
 
