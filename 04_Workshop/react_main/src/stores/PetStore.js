@@ -34,6 +34,12 @@ class PetStore extends EventEmitter {
 
     }
 
+    getPetComments(id) {
+
+        petData.getComments(id).then(data => this.emit(this.eventTypes.COMMENTS_LOADED, data))
+
+    }
+
 
 
 
@@ -65,6 +71,12 @@ class PetStore extends EventEmitter {
                 break
             }
 
+            case petActions.types.GET_COMMENTS: {
+
+                this.getPetComments(action.id)
+                break
+            }
+
 
             default:
                 break
@@ -86,7 +98,8 @@ petStore.eventTypes = {
     PET_CREATED: 'pet_created',
     PETS_LOADED: 'pets_loaded',
     PET_LOADED: 'pet_loaded',
-    COMMENT_ADDED: 'comment_added'
+    COMMENT_ADDED: 'comment_added',
+    COMMENTS_LOADED: 'comments_loaded'
 
 }
 

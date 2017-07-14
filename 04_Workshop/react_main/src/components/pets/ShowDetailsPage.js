@@ -21,12 +21,14 @@ class ShowDetailsPage extends Component {
             commentToAdd: {
 
                 message: ''
-            }
+            },
+            comments: []
 
         }
 
         this.handleLoadedPet = this.handleLoadedPet.bind(this)
         this.handleCommentAdded = this.handleCommentAdded.bind(this)
+        this.handleCommentsLoaded = this.handleCommentsLoaded.bind(this)
 
         petStore.on(petStore.eventTypes.PET_CREATED,
         this.handleLoadedPet)
@@ -34,11 +36,15 @@ class ShowDetailsPage extends Component {
         petStore.on(petStore.eventTypes.COMMENT_ADDED,
             this.handleCommentAdded)
 
+        petStore.on(petStore.eventTypes.COMMENTS_LOADED,
+            this.handleCommentsLoaded)
+
     }
 
-    componentWillMount(){
+    componentDidMount(){
 
         this.getPet()
+        this.getComments()
 
     }
 
@@ -51,8 +57,11 @@ class ShowDetailsPage extends Component {
 
         petStore.removeListener(
             petStore.eventTypes.COMMENT_ADDED,
-            this.handleCommentAdded()
+            this.handleCommentAdded
         )
+
+        petStore.removeListener(petStore.eventTypes.COMMENTS_LOADED,
+            this.handleCommentsLoaded)
 
     }
 
@@ -97,19 +106,37 @@ class ShowDetailsPage extends Component {
 
         if (!data.success) {
 
-            toastr.error(!data.message)
+            toastr.error(data.message)
 
         } else {
 
-
+            toastr.success('Comment added!')
+            this.getComments()
 
         }
+    }
+
+    getComments(){
+
+        petActions.getComments(this.state.petId)
+    }
+
+    handleCommentsLoaded(data){
+
+        this.setState({comments: data})
+
     }
 
 
     render(){
 
         let pet = this.state.pet
+
+        let comments = this.state.comments.map(comment => {
+
+            return <p key={comment.createdOn}>{comment.user} - {comment.message} - {comment.createdOn} </p>
+
+        })
 
         return (
 
@@ -120,6 +147,8 @@ class ShowDetailsPage extends Component {
                 {pet.url}
                 {pet.type}
                 {pet.name}
+
+                {comments}
 
                 <AddCommForm onClick={this.handleAddCommentForm.bind(this)} onChange={this.handleCommentChange.bind(this)} />
             </div>

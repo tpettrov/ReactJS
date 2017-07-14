@@ -12,7 +12,8 @@ const petActions = {
         CREATE_PET: 'CREATE_PET',
         GET_PETS: 'GET_PETS',
         GET_PET_BY_ID: 'GET_PET_BY_ID',
-        ADD_COMMENT: 'ADD_COMMENT'
+        ADD_COMMENT: 'ADD_COMMENT',
+        GET_COMMENTS: 'GET_COMMENTS'
 
 
     },
@@ -60,7 +61,19 @@ const petActions = {
 
         })
 
+    },
+
+    getComments (id) {
+
+        dispatcher.dispatch({
+
+            type: this.types.GET_COMMENTS,
+            id
+
+        })
+
     }
+
 
 
 
