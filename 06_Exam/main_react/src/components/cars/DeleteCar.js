@@ -8,6 +8,7 @@ import carStore from '../../stores/CarStore'
 
 
 
+class DeleteCar extends Component {
 
 
     componentWillMount(){
@@ -26,3 +27,4 @@ import carStore from '../../stores/CarStore'
 
 }
 
+export default DeleteCar
