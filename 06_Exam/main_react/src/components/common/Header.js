@@ -52,7 +52,9 @@ class Header extends  Component {
 
                         <span>
                             <p>Welcome, {this.state.username}</p>
-                        <Link to='/users/logout'>Logout</Link>
+                        <Link to='/users/logout'>Logout | </Link>
+                            <Link to='/cars/create'> Create car</Link>
+                            <Link to='/cars/mine'> | Profile Page</Link>
                         </span>
 
                     ) : (

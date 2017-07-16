@@ -21,11 +21,6 @@ class LogoutPage extends Component {
 
         return null
 
-
-
-
-
-
     }
 
 }

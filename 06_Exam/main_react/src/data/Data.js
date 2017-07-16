@@ -37,6 +37,22 @@ class Data {
 
     }
 
+    static myPost (url, authenticated) {
+
+        let options = getOptions()
+        options.method = 'POST'
+
+        if (authenticated) {
+
+            options.headers.Authorization = `bearer ${Auth.getToken()}`
+
+        }
+
+        return window.fetch(`${baseUrl}${url}`, options).then(handleJsonResponse)
+
+    }
+
+
     static get (url, authenticated) {
 
         let options = getOptions()
