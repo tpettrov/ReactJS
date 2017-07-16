@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 import carActions from '../../actions/CarActions'
 import carStore from '../../stores/CarStore'
 import {Link} from 'react-router-dom'
-import DeleteBtn from '../cars/likesAndReviews/DeleteBtn'
+
 
 class UsersCars extends Component {
 
@@ -58,9 +58,6 @@ class UsersCars extends Component {
 
 
 
-
-
-
     render(){
 
 
@@ -73,7 +70,7 @@ class UsersCars extends Component {
                 <Link to={`/cars/details/${car.id}`}>
                     Click on image for details:
                     <img src={car.image} alt="car"/></Link>
-                    <DeleteBtn  carId = {car.id}/>
+                    <button><Link to={`/cars/delete/${car.id}`}>DELETE</Link></button>
             </div>
         })
 
