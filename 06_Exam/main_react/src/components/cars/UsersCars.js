@@ -5,7 +5,8 @@ import React, {Component} from 'react'
 import carActions from '../../actions/CarActions'
 import carStore from '../../stores/CarStore'
 import {Link} from 'react-router-dom'
-
+import DeleteBtn from '../cars/likesAndReviews/DeleteBtn'
+import toastr from 'toastr'
 
 class UsersCars extends Component {
 
@@ -21,6 +22,11 @@ class UsersCars extends Component {
 
         this.handleLoadedUserCars = this.handleLoadedUserCars.bind(this)
 
+
+        this.handleDeletedCar = this.handleDeletedCar.bind(this)
+
+        carStore.on(carStore.eventTypes.CAR_DELETED,
+            this.handleDeletedCar)
 
         carStore.on(carStore.eventTypes.USER_CARS_LOADED,
         this.handleLoadedUserCars)
@@ -42,6 +48,10 @@ class UsersCars extends Component {
         carStore.removeListener(carStore.eventTypes.USER_CARS_LOADED,
             this.handleLoadedUserCars)
 
+        carStore.removeListener(carStore.eventTypes.CAR_DELETED,
+            this.handleDeletedCar)
+
+
     }
 
     getUsersCars(){
@@ -53,6 +63,20 @@ class UsersCars extends Component {
     handleLoadedUserCars(cars){
 
        this.setState({cars})
+
+    }
+
+    handleDeletedCar(data) {
+
+        if (!data.success) {
+
+            toastr.error(data.message)
+
+        } else {
+            toastr.error(data.message)
+
+
+        }
 
     }
 
@@ -70,7 +94,7 @@ class UsersCars extends Component {
                 <Link to={`/cars/details/${car.id}`}>
                     Click on image for details:
                     <img src={car.image} alt="car"/></Link>
-                    <button><Link to={`/cars/delete/${car.id}`}>DELETE</Link></button>
+                    <DeleteBtn carId={car.id} />
             </div>
         })
 

@@ -11,7 +11,7 @@ import CreateCarsPage from '../cars/CreateCarsPage'
 import CarsListPage from '../cars/CarsListPage'
 import CarDetailsPage from '../cars/CarDetailsPage'
 import UsersCars from '../cars/UsersCars'
-import DeleteCar from '../cars/DeleteCar'
+
 
 
 const Routes = () => (
@@ -24,7 +24,7 @@ const Routes = () => (
         <PrivateRoute path="/cars/create" component={CreateCarsPage} />
             <PrivateRoute path="/cars/details/:id" component={CarDetailsPage} />
             <PrivateRoute path="/cars/mine" component={UsersCars} />
-        <PrivateRoute path="/cars/delete/:id" component={DeleteCar} />
+
     </Switch>
 
 )
