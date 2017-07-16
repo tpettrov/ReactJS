@@ -73,7 +73,9 @@ class UsersCars extends Component {
             toastr.error(data.message)
 
         } else {
+
             toastr.error(data.message)
+            carActions.getUserCars()
 
 
         }
